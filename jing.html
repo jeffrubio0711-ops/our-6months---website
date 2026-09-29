@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy 6th Monthsary, My Love! 💕</title>
+  
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+ 
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <style>
+    :root {
+      --primary-color: #ff4d6d;
+      --secondary-color: #ff758f;
+      --bg-gradient: linear-gradient(135deg, #fff0f3 0%, #ffccd5 100%);
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-gradient);
+      color: #590d22;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .cursive-font {
+      font-family: 'Dancing Script', cursive;
+    }
+
+   
+    #heartCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .content-wrapper {
+      position: relative;
+      z-index: 1;
+    }
+
+ 
+    .hero-section {
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    .hero-title {
+      font-size: 3.8rem;
+      color: #c9184a;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      animation: pulse 2s infinite;
+    }
+
+    /* Cards (Photos & Videos) */
+    .media-card {
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      background: white;
+      padding: 10px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .media-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 15px 30px rgba(255, 77, 109, 0.3);
+    }
+
+    .media-card img, .media-card video {
+      border-radius: 10px;
+      height: 240px;
+      object-fit: cover;
+      width: 100%;
+    }
+
+   
+    .video-card-wrapper {
+      position: relative;
+    }
+
+    .play-btn-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 77, 109, 0.85);
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+
+    .media-card:hover .play-btn-overlay {
+      background: #c9184a;
+      transform: translate(-50%, -50%) scale(1.15);
+    }
+
+    /* Interactive Envelope Love Letter */
+    .envelope-wrapper {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .letter-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 35px;
+      box-shadow: 0 15px 35px rgba(201, 24, 74, 0.15);
+      border: 2px dashed #ff4d6d;
+    }
+
+    /* Animations */
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+      100% { transform: scale(1); }
+    }
+
+    .btn-custom {
+      background-color: var(--primary-color);
+      color: white;
+      border-radius: 30px;
+      padding: 12px 30px;
+      font-weight: 600;
+      border: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+    }
+
+    .btn-custom:hover {
+      background-color: #c9184a;
+      color: white;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  
+  <canvas id="heartCanvas"></canvas>
+
+  <div class="content-wrapper">
+   
+    <section class="hero-section">
+      <div class="container">
+        <h1 class="hero-title cursive-font mb-3">Happy 6th Monthsary, My Jing jing! 💕</h1>
+        <p class="lead text-secondary mb-4">6 Months of Laughs, Endless Love, & Unforgettable Memories Together.</p>
+        <div class="d-flex justify-content-center gap-3">
+          <button class="btn btn-custom" onclick="scrollToSection('videos')">Our Videos 🎥</button>
+          <button class="btn btn-custom" onclick="scrollToSection('letter')">Read Letter 💌</button>
+        </div>
+      </div>
+    </section>
+
+  
+    <section id="videos" class="py-5 bg-white bg-opacity-50">
+      <div class="container">
+        <h2 class="text-center cursive-font display-4 mb-2" style="color: #c9184a;">Our Video Memories 🎥</h2>
+        <p class="text-center text-muted mb-5">Click any video to watch in full screen!</p>
+        
+        <div class="row g-4">
+          
+          <div class="col-md-4 col-sm-6">
+            <div class="media-card video-card-wrapper" onclick="openVideoModal('our photo/light night walk.mp4', 'Late Night walk ✨')">
+              <video src="our photo/light night walk.mp4" muted preload="metadata"></video>
+              <div class="play-btn-overlay">
+                <i class="fa-solid fa-play"></i>
+              </div>
+              <p class="text-center mt-2 fw-semibold text-muted mb-0">Late Night walk ✨</p>
+            </div>
+          </div>
+         
+          <div class="col-md-4 col-sm-6">
+            <div class="media-card video-card-wrapper" onclick="openVideoModal('our photo/road.mp4', 'Road Trip 🚌')">
+              <video src="our photo/road.mp4" muted preload="metadata"></video>
+              <div class="play-btn-overlay">
+                <i class="fa-solid fa-play"></i>
+              </div>
+              <p class="text-center mt-2 fw-semibold text-muted mb-0">Road Trip 🚌</p>
+            </div>
+          </div>
+          
+          <div class="col-md-4 col-sm-6">
+            <div class="media-card video-card-wrapper" onclick="openVideoModal('our photo/dates.mp4', 'dit in jollibee 🤪')">
+              <video src="our photo/dates.mp4" muted preload="metadata"></video>
+              <div class="play-btn-overlay">
+                <i class="fa-solid fa-play"></i>
+              </div>
+              <p class="text-center mt-2 fw-semibold text-muted mb-0">dit 🤪</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+   
+    <section id="photos" class="py-5">
+      <div class="container">
+        <h2 class="text-center cursive-font display-4 mb-5" style="color: #c9184a;">Photo Gallery 📸</h2>
+        
+        <div class="row g-4">
+       
+          <div class="col-md-4 col-sm-6">
+            <div class="media-card" onclick="openPhotoModal('our photo/first meet.jpg')">
+              <img src="our photo/first meet.jpg" alt="Memory 1">
+              <p class="text-center mt-2 fw-semibold text-muted mb-0">Our First Meet ☕</p>
+            </div>
+          </div>
+          
+          <div class="col-md-4 col-sm-6">
+            <div class="media-card" onclick="openPhotoModal('our photo/birthday 2.jpg', 'Pure Happiness 🎂')">
+              <img src="our photo/birthday.jpg" alt="Memory 3">
+              <p class="text-center mt-2 fw-semibold text-muted mb-0">Your 21 Birthday 🎂</p>
+            </div>
+          </div>
+
+          <div class="col-md-4 col-sm-6">
+            <div class="media-card" onclick="openPhotoModal('our photo/swimming photo.jpg', 'Your Favorite Smile 😊')">
+              <img src="our photo/swimming photo.jpg" alt="Memory 2">
+              <p class="text-center mt-2 fw-semibold text-muted mb-0">Your Favorite Smile 😊</p>
+            </div>
+          </div>
+         
+        </div>
+      </div>
+    </section>
+
+    <!-- Love Letter Section -->
+    <section id="letter" class="py-5 bg-white bg-opacity-50">
+      <div class="container">
+        <div class="envelope-wrapper">
+          <div class="letter-card">
+            <div class="text-center mb-4">
+              <i class="fa-solid fa-heart fa-3x" style="color: #ff4d6d;"></i>
+              <h2 class="cursive-font display-5 mt-2" style="color: #c9184a;">My Dearest,</h2>
+            </div>
+            <p style="font-size: 1.1rem; line-height: 1.8;">
+              Happy 6th Monthsary, my Jing jing!
+
+            I honestly can’t believe how fast time has flown since we started this journey together. These past six months have been such a beautiful whirlwind filled with endless laughter, comfort, and so many unforgettable moments.
+            </p>
+            <p style="font-size: 1.1rem; line-height: 1.8;">
+              Of course, we’ve had our fair share of challenges, disagreements, and those classic away-bati moments where we go from arguing one minute to loving each other even harder the next. But no matter how much we clash or face tough days, none of it changes how deeply I love you. Facing those hurdles together has only made us stronger, and I wouldn't trade our story for anything.
+            </p>
+            <p style="font-size: 1.1rem; line-height: 1.8;">
+              Thank you for being my favorite person, my partner, and my home. Here’s to six months down and a lifetime of loving, learning, and growing together. I love you so much!
+            </p>
+              <div class="text-end mt-4">
+              <p class="cursive-font fs-3 mb-0" style="color: #c9184a;">Forever & Always,</p>
+              <p class="fw-bold fs-5">Your Je! 😚❤️</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+   
+    <footer class="text-center py-4 text-muted">
+      <p class="mb-0">Made with ❤️ for our 6th Monthsary</p>
+    </footer>
+  </div>
+
+  
+  <div class="modal fade" id="photoModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content border-0 bg-transparent">
+        <div class="modal-body text-center p-0">
+          <img id="modalImage" src="" class="img-fluid rounded shadow-lg" alt="Full Image">
+          <p id="modalCaption" class="text-white mt-3 fs-5 cursive-font"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="videoModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content border-0 bg-dark rounded-4">
+        <div class="modal-header border-0 pb-0">
+          <h5 id="videoModalTitle" class="modal-title text-white cursive-font fs-3 ms-2"></h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" onclick="stopModalVideo()"></button>
+        </div>
+        <div class="modal-body text-center p-3">
+          <video id="modalVideo" controls class="w-100 rounded-3 shadow">
+            <source id="videoSource" src="" type="video/mp4">
+            Your browser does not support video playback.
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+ 
+  <script>
+    
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+   
+    function openPhotoModal(src, caption) {
+      document.getElementById('modalImage').src = src;
+      document.getElementById('modalCaption').innerText = caption;
+      var photoModal = new bootstrap.Modal(document.getElementById('photoModal'));
+      photoModal.show();
+    }
+
+    
+    function openVideoModal(videoSrc, title) {
+      const modalVideo = document.getElementById('modalVideo');
+      const videoSource = document.getElementById('videoSource');
+      const videoTitle = document.getElementById('videoModalTitle');
+
+      videoSource.src = videoSrc;
+      videoTitle.innerText = title;
+      modalVideo.load();
+
+      var videoModal = new bootstrap.Modal(document.getElementById('videoModal'));
+      videoModal.show();
+      modalVideo.play();
+    }
+
+    function stopModalVideo() {
+      const modalVideo = document.getElementById('modalVideo');
+      modalVideo.pause();
+      modalVideo.currentTime = 0;
+    }
+
+    // Stop video automatically when closing video modal via backdrop click
+    document.getElementById('videoModal').addEventListener('hidden.bs.modal', function () {
+      stopModalVideo();
+    });
+
+    // Floating Heart Canvas Animation
+    const canvas = document.getElementById('heartCanvas');
+    const ctx = canvas.getContext('2d');
+    let hearts = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Heart {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = canvas.height + Math.random() * 100;
+        this.size = Math.random() * 15 + 10;
+        this.speedY = Math.random() * 1.5 + 0.5;
+        this.speedX = Math.random() * 1 - 0.5;
+        this.opacity = Math.random() * 0.5 + 0.3;
+      }
+
+      update() {
+        this.y -= this.speedY;
+        this.x += this.speedX;
+        if (this.y < -20) {
+          this.y = canvas.height + 20;
+          this.x = Math.random() * canvas.width;
+        }
+      }
+
+      draw() {
+        ctx.save();
+        ctx.globalAlpha = this.opacity;
+        ctx.fillStyle = '#ff4d6d';
+        ctx.beginPath();
+        ctx.moveTo(this.x, this.y);
+        ctx.bezierCurveTo(this.x - this.size / 2, this.y - this.size / 2, this.x - this.size, this.y + this.size / 3, this.x, this.y + this.size);
+        ctx.bezierCurveTo(this.x + this.size, this.y + this.size / 3, this.x + this.size / 2, this.y - this.size / 2, this.x, this.y);
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    function initHearts() {
+      hearts = [];
+      for (let i = 0; i < 25; i++) {
+        hearts.push(new Heart());
+      }
+    }
+
+    function animateHearts() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      hearts.forEach(heart => {
+        heart.update();
+        heart.draw();
+      });
+      requestAnimationFrame(animateHearts);
+    }
+
+    initHearts();
+    animateHearts();
+  </script>
+</body>
+</html>
